@@ -1,4 +1,4 @@
-# Drug Resitant CLI
+# Drug Resistant CLI
 
 `Drug Resitant` is a CLI based tool used for drug resistant analysis.
 
