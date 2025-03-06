@@ -27,20 +27,26 @@ class EnrichmentAnalysis(AlgorithmExecutor):
         # TODO: implement the execute method
         fixed_snps_lsit = list(set(self.snps["all_SNPs"][0] + self.snps["all_SNPs"][1]))
 
+        #all SNPs
         all_snps_resistance = self.snps["all_SNPs"][0]
         all_snps_sensitive = self.snps["all_SNPs"][1]
 
+        #IGR DR vs non-IGR DR
         intergenic_resistance = list(set(self.snps["intergenic"][0]))
         non_intergenic_resistance = list(set(self.snps["all_SNPs"][0]) - set(intergenic_resistance))
 
+        #IGR DS vs non-IGR DS
         intergenic_sensitive = list(set(self.snps["intergenic"][1]))
         non_intergenic_sensitive = list(set(self.snps["all_SNPs"][1]) - set(intergenic_sensitive))
 
+        #CDS region
         genic_region = list(set(fixed_snps_lsit) - set(intergenic_resistance) - set(intergenic_sensitive))
 
+        #5'UTR DR vs 3'UTR DR
         promoter_resistance = list(set([item[0] for item in self.snps["promoter"][0]]))
         non_promoter_resistance = list(set([item[0] for item in self.snps["promoter"][0]]) - set(promoter_resistance))
 
+        #5'UTR DS vs 3'UTR DS
         promoter_sensitive = list(set([item[1] for item in self.snps["promoter"][1]]))
         non_promoter_sensitive = list(set([item[1] for item in self.snps["promoter"][1]]) - set(promoter_sensitive))
         #
